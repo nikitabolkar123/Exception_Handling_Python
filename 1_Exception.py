@@ -1,17 +1,15 @@
-def divide():
-    a = 10
-    b = 0
-    try:
-        d = a / b
-        print(d)
+class NegativeError(Exception):
+    def _init_(self, data):
+        self.data = data
 
-    except ZeroDivisionError:
-        print('Division by zero not allowed')
+    def _str_(self):
+        return str(self.data) + ' is not a positive integer number'
+#The self parameter is a reference to the current instance of the class, and is used,
+# to access variables that belongs to the class.
 
-    else:  # run when no exception exist
-        print('Inside else')
-    finally:  # it will execute exception occurs or not
-        print('inside finally')
-
-print('rest of code')
-divide()
+try:
+    x = int(input("Enter a positive integer number: "))
+    if x < 0:
+        raise NegativeError(x)
+except NegativeError as e:
+    print(e)

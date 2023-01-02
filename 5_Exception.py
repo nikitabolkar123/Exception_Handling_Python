@@ -1,52 +1,69 @@
-def even():
-    try:
-        num = int(input("Enter a number: "))
-        assert num % 2 == 0
-    except:
-        print("Not an even number!")
-    else:
-        reciprocal = 1 / num
-        print(reciprocal)
-
-
-even()
-
-
-print("******************************************************")
-
-
-def my_tuple():
-  prices = { 'Pen' : 10, 'Pencil' : 5, 'Notebook' : 25}
-  item = input('Get price of: ')
-  try:
-    print(f'The price of {item} is {prices[item]}')
-  except KeyError:
-    print(f'The price of {item} is not known')
-  finally:
-    print(f'The finally statement is executed')
-my_tuple()
-
-
-print("******************************************************")
-
-def name_error():
-#Name Error
-    try:
-        print('x')
-    except:
-        print('something went wrong')
-    finally:
-        print('finally block')
-name_error()
-#help(Exception)
-#2ndprogram
-def fun(a):
-    if a < 4:
-        b = a / (a - 3)
-        print("Value of b = ", b)
+# define Python user-defined exceptions
+class InvalidAgeException(Exception):
+    "Raised when the input value is less than 18"
+    pass
+# you need to guess this number
+number = 18
 
 try:
-    fun(3)
+    input_num = int(input("Enter a number: "))
+    if input_num < number:
+        raise InvalidAgeException
+    else:
+        print("Eligible to Vote")
 
-except ZeroDivisionError:
-    print("ZeroDivisionError Occurred and Handled")s
+except InvalidAgeException:
+    print("Exception occurred: Invalid")
+
+#class Error is derived from super class Exception
+class Error(Exception):
+    pass
+
+
+class DobException(Error):
+    pass
+
+
+def check_age():
+    year = int(input("Enter year of birth : "))
+    age = 2022 - year
+    try:
+        if 20 <= age <= 30:
+            print("You are eligible")
+        else:
+            raise DobException
+    except DobException:
+        print("You are not eligible")
+
+
+check_age()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# define Python user-defined exceptions
+class InvalidAgeException(Exception):
+    "Raised when the input value is less than 18"
+    pass
+# you need to guess this number
+number = 18
+
+try:
+    input_num = int(input("Enter a number: "))
+    if input_num < number:
+        raise InvalidAgeException
+    else:
+        print("Eligible to Vote")
+
+except InvalidAgeException:
+    print("Exception occurred: Invalid")

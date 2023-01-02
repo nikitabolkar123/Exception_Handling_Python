@@ -1,23 +1,29 @@
-def type_errors():
-#type error
-    print('enter num1:')
-    num1 = input()
-    print('enter num2:')
-    num2 = input()
-try:  # keyword used to keep the code segment under check
-    print('the sum of these two numbers is', int(num1) + int(num2))
-except Exception as e:  # e catch the error ...segment to handle exception after catching it
-    print(e)  # e is used to create an instance
+class InventoryError(Exception):
+    pass
 
-print('this line is very important')
+class LocalToFarError(Exception):
+    pass
 
-# Index Out of Bound exception
+def shedule_delivery(distance):
+    if distance > 15:
+        raise LocalToFarError('delivery available only within 15 km')
+
+    else:
+        print('order placed successfully. product will be deliverd soon')
+
+def check_order(q):
+    stock = 100
+    if q > stock:
+        raise InventoryError('insufficient stock:')
+    else:
+        d=int(input('enter the distance from store:'))
+        shedule_delivery(d)
+
+
 try:
-    even_numbers = [4, 6, 7, 9]
-    print(even_numbers[5])
-
-except IndexError:
-    print("Index Out of Bound...")
-finally:
-    print('This is finally block...')
-type_errors()
+    quantity = int(input('enter the requrired quantity'))
+    check_order(quantity)
+except InventoryError as ie:
+    print(ie)
+except LocalToFarError as le:
+    print(le)
